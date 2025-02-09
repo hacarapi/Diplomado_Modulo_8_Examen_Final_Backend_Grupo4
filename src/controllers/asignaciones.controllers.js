@@ -45,13 +45,13 @@ async function getAsignacion(req, res) {
 async function updateAsignacion(req, res) {
     const { id } = req.params;
     try {
-        const { id_curso, id_docente,  } = req.body;
+        const { id_curso, id_docente } = req.body;
         const asignacion = await Asignaciones.findByPk(id);
         if (!asignacion) {
             return res.status(404).json({ message: 'Asignacion not found' });
         }
         await asignacion.update({
-            id_curso, id_docente, 
+            id_curso, id_docente 
         });
         res.json({ message: 'Asignacion updated successfully' });
     } catch (error) {

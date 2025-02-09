@@ -26,15 +26,14 @@ app.use(express.json());
 //Routes
 app.use('/api/login', authRoutes);
 app.use('/api/usuarios', usuariosRoutes);
-//app.use('/api/estudiantes', authenticateToken, estudiantesRoutes);
-app.use('/api/administrativos', administrativosRoutes);
-app.use('/api/docentes', docentesRoutes);
-app.use('/api/estudiantes', estudiantesRoutes);
-app.use('/api/cursos', cursosRoutes);
-app.use('/api/matriculas', matriculasRoutes);
-app.use('/api/asignaciones', asignacionesRoutes);
-app.use('/api/calificaciones', calificacionesRoutes);
-app.use('/api/asistencias', asistenciasRoutes);
+app.use('/api/administrativos', authenticateToken, administrativosRoutes);
+app.use('/api/docentes', authenticateToken, docentesRoutes);
+app.use('/api/estudiantes', authenticateToken, estudiantesRoutes);
+app.use('/api/cursos', authenticateToken, cursosRoutes);
+app.use('/api/matriculas', authenticateToken, matriculasRoutes);
+app.use('/api/asignaciones', authenticateToken, asignacionesRoutes);
+app.use('/api/calificaciones', authenticateToken,calificacionesRoutes);
+app.use('/api/asistencias', authenticateToken, asistenciasRoutes);
 // Settings
 //app.set('port', 3000);
 

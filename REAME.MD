@@ -210,3 +210,165 @@ Pass: Admin.123
     "calificacion":51
 }]
 ```
+
+# Asistencias
+```json
+[
+  {
+    "id_estudiante": 1,
+    "id_curso": 2,
+    "estado": "Presente"
+  },
+  {
+    "id_estudiante": 3,
+    "id_curso": 1,
+    "estado": "Ausente"
+  },
+  {
+    "id_estudiante": 2,
+    "id_curso": 3,
+    "estado": "Justificado"
+  },
+  {
+    "id_estudiante": 4,
+    "id_curso": 2,
+    "estado": "Presente"
+  },
+  {
+    "id_estudiante": 5,
+    "id_curso": 1,
+    "estado": "Ausente"
+  }
+]
+```
+
+# Docentes
+```json
+[
+  {
+    "nombre": "Dr. Luis",
+    "apellido": "González",
+    "especialidad": "Matemáticas",
+    "telefono": "777-123-4567",
+    "correo": "luis.gonzalez@example.com",
+    "fecha_contratacion": "2020-08-15"
+  },
+  {
+    "nombre": "Dra. Ana",
+    "apellido": "Pérez",
+    "especialidad": "Física",
+    "telefono": "777-987-6543",
+    "correo": "ana.perez@example.com",
+    "fecha_contratacion": "2021-02-20"
+  },
+  {
+    "nombre": "Ing. Carlos",
+    "apellido": "López",
+    "especialidad": "Informática",
+    "telefono": "777-555-1212",
+    "correo": "carlos.lopez@example.com",
+    "fecha_contratacion": "2019-11-10"
+  },
+  {
+    "nombre": "Lic. Sofía",
+    "apellido": "Martínez",
+    "especialidad": "Literatura",
+    "telefono": "777-111-2233",
+    "correo": "sofia.martinez@example.com",
+    "fecha_contratacion": "2022-06-01"
+  },
+  {
+    "nombre": "Prof. Pedro",
+    "apellido": "Sánchez",
+    "especialidad": "Historia",
+    "telefono": "777-444-5566",
+    "correo": "pedro.sanchez@example.com",
+    "fecha_contratacion": "2023-04-25"
+  }
+]
+```
+# Asignaciones
+```json
+[
+{ "id_docente": 1, "id_curso": 1 },
+{ "id_docente": 2, "id_curso": 2 },
+{ "id_docente": 3, "id_curso": 3 },
+{ "id_docente": 4, "id_curso": 4 },
+{ "id_docente": 5, "id_curso": 5 }
+]
+```
+# Administrativos
+```json
+[
+  {
+    "nombre": "María",
+    "apellido": "Sánchez",
+    "telefono": "777-123-4567",
+    "correo": "maria.sanchez@example.com",
+    "fecha_contratacion": "2023-01-15"
+  },
+  {
+    "nombre": "Juan",
+    "apellido": "Pérez",
+    "telefono": "777-987-6543",
+    "correo": "juan.perez@example.com",
+    "fecha_contratacion": "2022-05-20"
+  },
+  {
+    "nombre": "Ana",
+    "apellido": "Gómez",
+    "telefono": "777-555-1212",
+    "correo": "ana.gomez@example.com",
+    "fecha_contratacion": "2024-02-10"
+  },
+  {
+    "nombre": "Carlos",
+    "apellido": "López",
+    "telefono": "777-111-2233",
+    "correo": "carlos.lopez@example.com",
+    "fecha_contratacion": "2023-09-01"
+  },
+  {
+    "nombre": "Sofía",
+    "apellido": "Martínez",
+    "telefono": "777-444-5566",
+    "correo": "sofia.martinez@example.com",
+    "fecha_contratacion": "2022-11-25"
+  }
+]
+```
+# Usuarios
+```json
+[
+  {
+    "rol": "Estudiante",
+    "usuario": "estudiante1",
+    "contraseña": "password123",
+    "id_estudiante": 1 // ID del estudiante existente
+  },
+  {
+    "rol": "Estudiante",
+    "usuario": "estudiante2",
+    "contraseña": "password123",
+    "id_estudiante": 2 // ID del estudiante existente
+  },
+  {
+    "rol": "Estudiante",
+    "usuario": "estudiante3",
+    "contraseña": "password123",
+    "id_estudiante": 3 // ID del estudiante existente
+  },
+  {
+    "rol": "Docente",
+    "usuario": "docente1",
+    "contraseña": "securepass",
+    "id_docente": 2 // ID del docente existente
+  },
+  {
+    "rol": "Administrativo",
+    "usuario": "admin1",
+    "contraseña": "adminpass",
+    "id_administrativo": 3 // ID del administrativo existente
+  }
+]
+```

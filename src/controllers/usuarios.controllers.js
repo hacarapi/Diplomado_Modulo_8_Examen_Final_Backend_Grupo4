@@ -1,10 +1,14 @@
 import logger from "../logs/logger.js";
 import { Usuarios } from "../models/usuarios.model.js";
+import { Estudiantes } from "../models/estudiantes.model.js";
+import { Docentes } from "../models/docentes.model.js";
+import { Administrativos } from "../models/administrativos.model.js";
+import { where } from "sequelize";
 
 async function getUsuarios(req, res) {
     try{
     const usuarios = await Usuarios.findAll({
-        attributes:['id_usuario', 'usuario', 'contraseña', 'rol'],
+        attributes:['id_usuario', 'usuario', 'contraseña', 'rol', 'id_docente','id_estudiante', 'id_administrativo'],
         order:[[ 'id_usuario', 'DESC']],
     });
     res.json(usuarios);
@@ -28,12 +32,7 @@ async function createUsuario(req, res) {
 async function getUsuario(req, res) {
     try {
         const usuario = await Usuarios.findByPk(req.params.id, {
-            attributes: ['id_usuario', 'usuario', 'rol'], // No incluyas la contraseña
-            include: [ // Incluye los modelos relacionados, si existen
-                { model: Estudiantes, as: 'estudiante' },
-                { model: Docentes, as: 'docente' },
-                { model: Administrativos, as: 'administrativo' }
-            ]
+            attributes: ['id_usuario', 'usuario', 'rol', 'id_docente','id_estudiante', 'id_administrativo'],
         });
         if (!usuario) {
             return res.status(404).json({ message: 'Usuario not found' });
@@ -45,52 +44,49 @@ async function getUsuario(req, res) {
     }
 };
 
-/*async function updateUsuario(req, res) {
-    const { id } = req.params;
-    const { usuario, contraseña } = req.body;
-    try {
-        if (!usuario || !contraseña)
-            return res
-                .status(400)
-                .json({ message: 'Username or password are required' });
-
-        const update_usuario = await Usuarios.update(
-            {
-                usuario,
-                contraseña,
-            },
-            {
-                where: { id_usuario },
-            }
-        );
-        res.json(update_usuario);
-    } catch (error) {
-        logger.error('Error getUser: ' + error);
-        res.status(500).json({ message: 'Server error' });
-    }
-};*/
 async function updateUsuario(req, res) {
     const { id } = req.params;
-    const { usuario, contraseña, rol, id_estudiante, id_docente, id_administrativo } = req.body; // Incluir rol y IDs
+    const { usuario, contraseña, rol, id_estudiante, id_docente, id_administrativo} = req.body;
+    logger.info(usuario);
+    logger.info(contraseña);
     try {
-        const updatedUsuario = await Usuarios.update(
-            { usuario, contraseña, rol, id_estudiante, id_docente, id_administrativo }, // Actualizar todos los campos
-            { where: { id_usuario: id } } // Usar id_usuario
-        );
-        if (updatedUsuario[0] === 0) { // Comprobar si se actualizó algún registro
-            return res.status(404).json({ message: 'Usuario not found' });
+        // Validar que al menos un campo se envíe
+        if (!usuario && !contraseña) {
+            return res.status(400).json({ message: 'Debe proporcionar usuario o contraseña' });
         }
-        res.json({ message: 'Usuario updated successfully' }); // Mensaje de éxito más claro
+
+        // Buscar usuario existente
+        const usuarioExistente = await Usuarios.findByPk(id);
+        if (!usuarioExistente) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        // Filtrar valores `undefined` para evitar sobreescribir con `null`
+        const camposActualizados = Object.fromEntries(
+            Object.entries({ usuario, contraseña,rol, id_estudiante, id_docente, id_administrativo }).filter(([_, value]) => value !== undefined)
+        );
+
+        // Actualizar usuario
+        const [actualizado] = await Usuarios.update(camposActualizados, { where: { id_usuario: id } });
+
+        if (actualizado === 0) {
+            return res.status(400).json({ message: 'No se realizaron cambios en el usuario' });
+        }
+
+        // Obtener usuario actualizado y enviarlo en la respuesta
+        const usuarioActualizado = await Usuarios.findByPk(id, { attributes: ['id_usuario', 'usuario', 'rol', 'id_docente','id_estudiante', 'id_administrativo'] });
+        res.json({ message: 'Usuario actualizado correctamente', usuario: usuarioActualizado });
+
     } catch (error) {
-        logger.error('Error updateUsuario: ' + error); // Corregir nombre del error
-        res.status(500).json({ message: 'Server error' });
+        logger.error(`Error en updateUsuario: ${error.message}`, { error });
+        res.status(500).json({ message: 'Error del servidor' });
     }
 };
 
 async function deleteUsuario(req, res) {
-    const { id_usuario } = req.params;
+    const { id } = req.params;
     try {
-        const usuario = await Usuarios.findByPk(id_usuario);
+        const usuario = await Usuarios.findByPk(id);
         if (!usuario){
             return res.status(404).json({message: 'Usuario not found'});
         }

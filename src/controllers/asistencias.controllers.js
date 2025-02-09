@@ -47,7 +47,7 @@ async function updateAsistencia(req, res) {
     try {
         const { id_curso, id_estudiante, estado, fecha } = req.body;
         const update_asistencia = await Asistencias.findByPk(id);
-        if (!asistencia) {
+        if (!update_asistencia) {
             return res.status(404).json({ message: 'Asistencia not found' });
         }
         await update_asistencia.update({
