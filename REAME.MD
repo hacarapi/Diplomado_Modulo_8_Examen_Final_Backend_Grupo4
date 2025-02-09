@@ -1,21 +1,38 @@
-# install
-pimer paso: Crear variables de entorno
-``bash
-cp.env.sample.env
-segundo paso: instalar node_modules ```bash
-npm install
-ejecutar modo desarollo bash npm run dev
-ejecutar modo prod
-`bash
-npm run start
+# GRUPO 4: PROYECTO FINAL GESTIÓN ESTUDIANTIL USIP
 
-PostgreSQL 17.0.1
-User: Postgress
-Pass: Admin.123
+## Configuración e instalación
+
+1. Crear las variables de entorno y completar los datos correspondientes.
+
+    ```bash
+    cp .env.sample .env
+    ```
+
+2. Instalar dependencias:
+
+    ```bash
+    npm install
+    ```
+
+3. Ejecutar la aplicación
+
+    - Ejecutar en modo desarollo
+
+        ```bash
+        npm run dev
+        ```
+
+    - Ejecutar en modo producción
+
+        ```bash
+        npm run start
+        ```
 
 
-# Ejemplos de Datos
-## Estudiantes
+## Ejemplos de Datos
+
+### Estudiantes
+
 ```json
 [
   {
@@ -121,7 +138,8 @@ Pass: Admin.123
 ]
 ```
 
-## Cursos
+### Cursos
+
 ```json
 [
   {
@@ -151,7 +169,9 @@ Pass: Admin.123
   }
 ]
 ```
-# Matriculas
+
+### Matriculas
+
 ```json
 [
   {
@@ -197,7 +217,8 @@ Pass: Admin.123
 ]
 ```
 
-# Calificaciones
+### Calificaciones
+
 ```json
 [{
     "id_estudiante": 1,
@@ -211,7 +232,8 @@ Pass: Admin.123
 }]
 ```
 
-# Asistencias
+### Asistencias
+
 ```json
 [
   {
@@ -242,7 +264,8 @@ Pass: Admin.123
 ]
 ```
 
-# Docentes
+### Docentes
+
 ```json
 [
   {
@@ -287,7 +310,9 @@ Pass: Admin.123
   }
 ]
 ```
-# Asignaciones
+
+### Asignaciones
+
 ```json
 [
 { "id_docente": 1, "id_curso": 1 },
@@ -297,7 +322,9 @@ Pass: Admin.123
 { "id_docente": 5, "id_curso": 5 }
 ]
 ```
-# Administrativos
+
+### Administrativos
+
 ```json
 [
   {
@@ -337,7 +364,9 @@ Pass: Admin.123
   }
 ]
 ```
-# Usuarios
+
+### Usuarios
+
 ```json
 [
   {
