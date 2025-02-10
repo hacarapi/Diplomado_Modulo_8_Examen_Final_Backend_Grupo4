@@ -8,8 +8,8 @@ import logger from "./logs/logger.js";
 
 async function main(){
     //await sequelize.sync();
-    //await sequelize.sync({force: true});
-    await sequelize.sync({force: false});
+    await sequelize.sync({force: true});
+    //await sequelize.sync({force: false});
     const port = process.env.PORT;
     app.listen(port);
     console.log('listening on port', port);
