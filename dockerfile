@@ -1,18 +1,20 @@
-# Usar una imagen oficial de Node.js
-FROM node:20
+# Usa una imagen oficial de Node.js como base
+FROM node:20.11.1
 
-# Establecer el directorio de trabajo en el contenedor
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copiar archivos de la aplicación
-COPY package.json package-lock.json ./
+# Instala git para clonar el repositorio
+RUN apt-get update && apt-get install -y git
+
+# Clona el repositorio desde GitHub
+RUN git clone https://github.com/hacarapi/Diplomado_Modulo_8_Examen_Final_Backend_Grupo4.git /app
+
+# Instala las dependencias del backend
 RUN npm install
 
-# Copiar el resto del código
-COPY . .
-
-# Exponer el puerto de la aplicación
+# Expone el puerto en el que corre el backend
 EXPOSE 3000
 
-# Comando para iniciar la aplicación
+# Comando para ejecutar el backend
 CMD ["npm", "start"]
