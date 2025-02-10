@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "root",
+    "database": "db_gestion_estudiantil_usip",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
