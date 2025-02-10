@@ -14,7 +14,14 @@
     npm install
     ```
 
-3. Ejecutar la aplicación
+3. Sembrar datos de los Seeders:
+
+    ```bash
+    npx sequelize-cli init
+    npx sequelize-cli db:seed:all
+    ```
+
+4. Ejecutar la aplicación
 
     - Ejecutar en modo desarollo
 
