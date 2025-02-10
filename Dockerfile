@@ -8,7 +8,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y git
 
 # Clona el repositorio desde GitHub
-RUN git clone https://github.com/hacarapi/Diplomado_Modulo_8_Examen_Final_Backend_Grupo4.git /app
+RUN git clone https://github.com/hacarapi/Diplomado_Modulo_8_Examen_Final_Backend_Grupo4.git .
 
 # Instala las dependencias del backend
 RUN npm install
